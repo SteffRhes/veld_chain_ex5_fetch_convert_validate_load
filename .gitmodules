@@ -1,0 +1,15 @@
+[submodule "veld_dummy_executable_1_fetch_json"]
+	path = veld_dummy_executable_1_fetch_json
+	url = git@github.com:steffres/veld_dummy_executable_1_fetch_json.git
+[submodule "veld_dummy_executable_2_json_to_xml"]
+	path = veld_dummy_executable_2_json_to_xml
+	url = git@github.com:steffres/veld_dummy_executable_2_json_to_xml.git
+[submodule "veld_dummy_executable_3_validate_xml"]
+	path = veld_dummy_executable_3_validate_xml
+	url = git@github.com:steffres/veld_dummy_executable_3_validate_xml.git
+[submodule "veld_dummy_executable_4_existdb"]
+	path = veld_dummy_executable_4_existdb
+	url = git@github.com:steffres/veld_dummy_executable_4_existdb.git
+[submodule "veld_dummy_data_3_existdb"]
+	path = veld_dummy_data_3_existdb
+	url = git@github.com:steffres/veld_dummy_data_3_existdb.git
