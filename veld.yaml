@@ -51,7 +51,7 @@ services:
       file: ./veld_dummy_executable_5_load_to_basex/veld.yaml
       service: veld
     volumes:
-      - ./veld_dummy_data_2_xml/data.xml:/veld/input/data.xml
+      - ./data_tmp/data.xml:/veld/input/data.xml
     environment:
       user: "admin"
       password: "admin"
