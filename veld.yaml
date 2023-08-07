@@ -9,16 +9,16 @@ services:
       file: ./veld_dummy_executable_1_fetch_json/veld.yaml
       service: veld
     volumes:
-      - ./tmp/data.json:/veld/output/a/data.json
-      - ./tmp/log_fetch.txt:/veld/output/b/log.txt
+      - ./data_tmp/data.json:/veld/output/a/data.json
+      - ./data_tmp/log_fetch.txt:/veld/output/b/log.txt
 
   veld_convert:
     extends:
       file: ./veld_dummy_executable_2_json_to_xml/veld.yaml
       service: veld
     volumes:
-      - ./tmp/data.json:/veld/input/data.json
-      - ./tmp/data.xml:/veld/output/data.xml
+      - ./data_tmp/data.json:/veld/input/data.json
+      - ./data_tmp/data.xml:/veld/output/data.xml
     depends_on:
       veld_fetch:
         condition: service_completed_successfully
@@ -28,34 +28,38 @@ services:
       file: ./veld_dummy_executable_3_validate_xml/veld.yaml
       service: veld
     volumes:
-      - ./tmp/data.xml:/veld/input/a/data.xml
-      - ./tmp/validation_result.txt:/veld/output/result.txt
+      - ./data_tmp/data.xml:/veld/input/a/data.xml
+      - ./data_tmp/validation_result.txt:/veld/output/result.txt
     depends_on:
       veld_convert:
         condition: service_completed_successfully
 
   veld_db:
     extends:
-      file: ./veld_dummy_executable_4_existdb/veld.yaml
+      file: ./veld_dummy_executable_4_basex/veld.yaml
       service: veld
     volumes:
-      - ./veld_dummy_data_3_existdb/data:/exist/data
+      - ./veld_dummy_data_3_basex/db_data:/veld/storage
     networks:
-      - existdb
-    depends_on:
-      veld_convert:
-        condition: service_completed_successfully
+      - basex_network 
 
   veld:
-    image: curlimages/curl:8.2.1 
-    command: curl -s -f -T /data.xml --user admin:"" veld_db:8080/exist/rest/db/data.xml
+    extends:
+      file: ./veld_dummy_executable_5_load_to_basex/veld.yaml
+      service: veld
     volumes:
-      - ./tmp/data.xml:/data.xml
-    networks:
-      - existdb
+      - ./veld_dummy_data_2_xml/data.xml:/veld/input/data.xml
     depends_on:
       veld_db:
         condition: service_healthy
-
+    environment:
+      user: "admin"
+      password: "admin"
+      host: "veld_db:8984"
+      database_name: "veld_dummy_database"
+    networks:
+      - basex_network 
+    
 networks:
-  existdb:
+  basex_network:
+
