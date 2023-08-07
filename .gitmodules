@@ -13,6 +13,6 @@
 [submodule "veld_dummy_data_3_basex"]
 	path = veld_dummy_data_3_basex
 	url = git@github.com:steffres/veld_dummy_data_3_basex.git
-[submodule "veld_dummy_chain_5_load_to_basex"]
-	path = veld_dummy_chain_5_load_to_basex
-	url = git@github.com:steffres/veld_dummy_chain_5_load_to_basex.git
+[submodule "veld_dummy_executable_5_load_to_basex"]
+	path = veld_dummy_executable_5_load_to_basex
+	url = git@github.com:steffres/veld_dummy_executable_5_load_to_basex.git
