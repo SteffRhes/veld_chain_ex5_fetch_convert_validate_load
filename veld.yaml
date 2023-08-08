@@ -46,7 +46,7 @@ services:
       veld_validate:
         condition: service_completed_successfully
 
-  veld:
+  veld_load:
     extends:
       file: ./veld_executable_ex5_load_to_basex/veld.yaml
       service: veld
