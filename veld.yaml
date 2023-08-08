@@ -6,7 +6,7 @@ x-veld:
 services:
   veld_fetch:
     extends:
-      file: ./veld_dummy_executable_1_fetch_json/veld.yaml
+      file: ./veld_executable_ex1_fetch_json/veld.yaml
       service: veld
     volumes:
       - ./data_tmp/data.json:/veld/output/a/data.json
@@ -14,7 +14,7 @@ services:
 
   veld_convert:
     extends:
-      file: ./veld_dummy_executable_2_json_to_xml/veld.yaml
+      file: ./veld_executable_ex2_json_to_xml/veld.yaml
       service: veld
     volumes:
       - ./data_tmp/data.json:/veld/input/data.json
@@ -25,7 +25,7 @@ services:
 
   veld_validate:
     extends:
-      file: ./veld_dummy_executable_3_validate_xml/veld.yaml
+      file: ./veld_executable_ex3_validate_xml/veld.yaml
       service: veld
     volumes:
       - ./data_tmp/data.xml:/veld/input/a/data.xml
@@ -36,10 +36,10 @@ services:
 
   veld_db:
     extends:
-      file: ./veld_dummy_executable_4_basex/veld.yaml
+      file: ./veld_executable_ex4_basex/veld.yaml
       service: veld
     volumes:
-      - ./veld_dummy_data_3_basex/db_data:/veld/storage
+      - ./veld_data_ex3_basex/db_data:/veld/storage
     networks:
       - basex_network 
     depends_on:
@@ -48,7 +48,7 @@ services:
 
   veld:
     extends:
-      file: ./veld_dummy_executable_5_load_to_basex/veld.yaml
+      file: ./veld_executable_ex5_load_to_basex/veld.yaml
       service: veld
     volumes:
       - ./data_tmp/data.xml:/veld/input/data.xml
