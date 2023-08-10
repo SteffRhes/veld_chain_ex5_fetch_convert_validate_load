@@ -2,6 +2,10 @@ x-veld:
   chain:
     about:
       description: "example veld for testing and showcasing"
+      topics: 
+        - "ETL"
+        - "data validation"
+        - "data persistence"
 
 services:
   veld_fetch:
